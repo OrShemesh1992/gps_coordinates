@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import Coords.MyCoords;
 import Geom.Point3D;
+import PackmanGame.Map;
 
 class JUnitTest {
-	Point3D expectedPoint, g1, g2, g3, g4, g5, g6, g7;
+	Point3D expectedPoint, g1, g2, g3, g4, g5, g6, g7, p, p1, p2, p3, p4;
 	MyCoords g;
+	Map m;
 	double output;
 	@BeforeEach
 	void setUp() throws Exception {
@@ -20,6 +22,11 @@ class JUnitTest {
 		g5 = new Point3D(7,26.565051177078,73.39845040098);
 		g6 = new Point3D(32.103315,35.209039,670);
 		g7 = new Point3D(32.106352,35.205225,650);
+		m = new Map();
+		p = new Point3D(35.212405,32.101858);
+		p1 = new Point3D(35.209039,32.103315);
+		p2 = new Point3D(1433.0,642.0,0.0);
+		p3 = new Point3D(942.0,418.0,0.0);
 	}
 
 
@@ -67,6 +74,36 @@ class JUnitTest {
 				fail("fail");
 			}
 
+		}
+	}
+	@Test
+	void testToPixel() {
+		expectedPoint = new Point3D(942.0,418.0,0.0);
+		if(!expectedPoint.equals(m.toPixel(p1))) {
+			fail("fail");
+		}
+	}
+	
+	@Test
+	void testToGPS() {
+		expectedPoint = new Point3D(35.212405,32.101858,0.0);
+		if(!expectedPoint.equals(m.toGps(p2))) {
+			fail("fail");
+		}
+	}
+	
+	@Test
+	void testDistancePixels() {
+		output = 399.04496074775903;
+		if(output != m.distancePixels(p2, p3)) {
+			fail("fail");
+		}
+	}
+	@Test
+	void testDisToGUI() {
+		output = 3.7241856035613026;
+		if(output != m.disToGUI(p1, p)) {
+			fail("fail");
 		}
 	}
 	

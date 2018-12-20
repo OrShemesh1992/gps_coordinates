@@ -5,6 +5,7 @@ import Coords.MyCoords;
 import Geom.Geom_element;
 import Geom.Point3D;
 import GIS.Project;
+import GIS.Data;
 import GIS.Element;
 import GIS.GIS_layer;
 import GIS.Layer;
@@ -112,6 +113,8 @@ public class mainTest {
 		//		File dir= new File("C:\\Users\\OrShemesh\\Downloads");
 		//		displayDirectoryContents(dir);
 		System.out.println(a1);
+		Data stam=(Data) a1.get_Meta_data();
+		System.out.println(stam);
 		Iterator<GIS_layer> It = a1.iterator();
 		int i=15;
 		while(It.hasNext())
